@@ -1,0 +1,431 @@
+/* ==================== GENERAL ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EDEBE5;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    padding-top: 110px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+/* ==================== TÍTULO DE SECCIÓN ==================== */
+.titulo-seccion {
+    width: 100%;
+    background: linear-gradient(135deg, #1a0033 0%, #2d1b69 50%, #1a0033 100%);
+    color: white;
+    text-align: center;
+    padding: 20px 12px;
+    font-weight: bold;
+    font-size: 32px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(108, 61, 247, 0.8), 0 0 20px rgba(138, 43, 226, 0.6);
+    border-top: 2px solid rgba(108, 61, 247, 0.6);
+    border-bottom: 2px solid rgba(108, 61, 247, 0.6);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== FILTROS ==================== */
+.filtros-container {
+    background: linear-gradient(135deg, #2d1b69 0%, #1a0033 100%);
+    padding: 30px 40px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(108, 61, 247, 0.3);
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+}
+
+.filtro-grupo label {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.filtro-select {
+    padding: 12px 16px;
+    border: 2px solid rgba(108, 61, 247, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.filtro-select option {
+    background: #2d1b69;
+    color: white;
+}
+
+.filtro-select:hover,
+.filtro-select:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #6c3df7;
+    box-shadow: 0 0 15px rgba(108, 61, 247, 0.5);
+}
+
+/* Buscador en filtros */
+.search-group {
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.filtro-search {
+    width: 100%;
+    padding: 12px 45px 12px 16px;
+    border: 2px solid rgba(108, 61, 247, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.filtro-search::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.filtro-search:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.search-icon-filter {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.filtro-search:focus+.search-icon-filter {
+    color: #FFD700;
+}
+
+/* ==================== GRID DE PERIFÉRICOS ==================== */
+.perifericos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 35px;
+    padding: 50px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.periferico-card {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #e8e8e8;
+    cursor: pointer;
+}
+
+.periferico-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(108, 61, 247, 0.2);
+    border-color: rgba(108, 61, 247, 0.4);
+}
+
+.periferico-card.destacado {
+    border: 2px solid rgba(108, 61, 247, 0.3);
+    background: linear-gradient(135deg, rgba(108, 61, 247, 0.03) 0%, #ffffff 100%);
+}
+
+.periferico-card.oferta {
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.03) 0%, #ffffff 100%);
+}
+
+/* Imagen del periférico */
+.periferico-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.periferico-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.periferico-card:hover .periferico-image img {
+    transform: scale(1.1);
+}
+
+.stock-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(0, 200, 83, 0.4);
+}
+
+.stock-badge.nuevo {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    animation: pulse 2s infinite;
+}
+
+.stock-badge.descuento {
+    background: linear-gradient(135deg, #ff0050 0%, #d40042 100%);
+}
+
+/* Información del periférico */
+.periferico-info {
+    text-align: center;
+}
+
+.periferico-titulo {
+    font-size: 20px;
+    font-weight: 900;
+    color: #1a0033;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.periferico-plataforma {
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.periferico-precio {
+    font-size: 32px;
+    font-weight: 900;
+    color: #6c3df7;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(108, 61, 247, 0.2);
+}
+
+.precio-con-descuento {
+    margin-bottom: 20px;
+}
+
+.precio-original {
+    display: block;
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Botones */
+.periferico-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-anadir {
+    flex: 1;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #6c3df7 0%, #8e44ad 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(108, 61, 247, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-anadir::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn-anadir:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-anadir:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #b76eff 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(108, 61, 247, 0.5);
+}
+
+.btn-ver-mas {
+    flex: 1;
+    padding: 14px 20px;
+    background: white;
+    color: #6c3df7;
+    border: 2px solid #6c3df7;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-ver-mas:hover {
+    background: #6c3df7;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(108, 61, 247, 0.3);
+}
+
+.icono {
+    font-size: 16px;
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+    background-color: #5C3BB7;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes headerShine {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ==================== RESPONSIVE - ESPECÍFICO DE PERIFÉRICOS ==================== */
+/* Los estilos globales del header, menú, filtros móviles, etc. están en responsive.css */
+
+@media (max-width: 1024px) {
+    .perifericos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 40px 30px;
+    }
+
+    .periferico-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .perifericos-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .periferico-image {
+        height: 280px;
+    }
+
+    .periferico-titulo {
+        font-size: 18px;
+        min-height: auto;
+    }
+
+    .periferico-precio {
+        font-size: 28px;
+    }
+
+    .periferico-botones {
+        flex-direction: column;
+    }
+
+    .btn-anadir,
+    .btn-ver-mas {
+        width: 100%;
+    }
+
+    .periferico-card {
+        padding: 20px;
+    }
+}

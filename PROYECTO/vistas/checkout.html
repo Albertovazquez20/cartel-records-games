@@ -1,0 +1,123 @@
+<!-- ===== VISTA CHECKOUT ===== -->
+<section class="checkout-main">
+
+    <!-- COLUMNA IZQUIERDA: Resumen del pedido -->
+    <div class="checkout-panel">
+        <div class="checkout-section-title">🛒 Resumen del pedido</div>
+        <div id="resumenItems"></div>
+        <div class="resumen-total">
+            <span>Total</span>
+            <span id="resumenTotal">0.00 €</span>
+        </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: Formulario de envío -->
+    <div class="checkout-panel">
+        <div class="checkout-section-title">📦 Datos de envío</div>
+
+        <!-- Sección: direcciones guardadas (se muestra solo si hay) -->
+        <div id="seccionDireccionesGuardadas" style="display:none;">
+            <p class="checkout-label-guardadas">📍 Tus direcciones guardadas:</p>
+            <div id="listaDirecciones"></div>
+            <button type="button" class="btn-nueva-direccion" id="btnNuevaDireccion">
+                ➕ Usar nueva dirección
+            </button>
+        </div>
+
+        <!-- Formulario (oculto si hay direcciones guardadas) -->
+        <form id="formCheckout" novalidate>
+
+            <div class="form-group">
+                <label for="calle">Calle y número</label>
+                <input type="text" id="calle" name="calle" placeholder="Ej: Calle Mayor 12, 3ºA" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" id="ciudad" name="ciudad" placeholder="Madrid" required>
+                </div>
+                <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <input type="text" id="provincia" name="provincia" placeholder="Madrid" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="codigo_postal">Código postal</label>
+                    <input type="text" id="codigo_postal" name="codigo_postal" placeholder="28001" maxlength="5"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="pais">País</label>
+                    <input type="text" id="pais" name="pais" value="España" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono de contacto</label>
+                <input type="tel" id="telefono" name="telefono_contacto" placeholder="600 000 000" required>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+<!-- PANEL INFERIOR: Método de pago (ancho completo) -->
+<section class="checkout-main checkout-pago-panel">
+    <div class="checkout-panel" style="grid-column: 1 / -1;">
+        <div class="checkout-section-title">💳 Método de pago</div>
+
+        <div class="form-group">
+            <label for="metodoPago">Selecciona un método</label>
+            <select id="metodoPago" class="select-pago">
+                <option value="Tarjeta">💳 Tarjeta de crédito / débito</option>
+                <option value="PayPal">🅿️ PayPal</option>
+                <option value="Contrarembolso">💵 Contrarembolso</option>
+            </select>
+        </div>
+
+        <!-- Campos de tarjeta (solo visibles si se selecciona "Tarjeta") -->
+        <div id="camposTarjeta">
+            <div class="form-group">
+                <label for="numTarjeta">Número de tarjeta</label>
+                <input type="text" id="numTarjeta" placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="caducidad">Caducidad</label>
+                    <input type="text" id="caducidad" placeholder="MM/AA" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="titular">Titular de la tarjeta</label>
+                <input type="text" id="titular" placeholder="NOMBRE APELLIDO">
+            </div>
+        </div>
+
+        <!-- Aviso PayPal -->
+        <div id="avisoPaypal" class="pago-aviso" style="display:none;">
+            🅿️ Serás redirigido a PayPal para completar el pago de forma segura.
+        </div>
+
+        <!-- Aviso Contrarembolso -->
+        <div id="avisoContrarembolso" class="pago-aviso" style="display:none;">
+            💵 Pagarás en efectivo al repartidor cuando recibas tu pedido.<br>
+            <span style="color:rgba(255,255,255,0.5); font-size:0.82rem;">
+                El pedido se procesará y enviará de inmediato. Ten el importe exacto preparado.
+            </span>
+        </div>
+
+
+        <button type="button" class="btn-confirmar" id="btnConfirmar">
+            ✅ Confirmar pedido
+        </button>
+
+    </div>
+</section>

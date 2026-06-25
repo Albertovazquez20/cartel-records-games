@@ -1,0 +1,276 @@
+<!-- ===== VISTA HOME ===== -->
+<!-- Novedades -->
+<section class="titulo-seccion" id="novedades-section">NOVEDADES</section>
+
+<section class="novedades">
+    <button class="carrusel-flecha izq" id="carruselPrev">&#8249;</button>
+    <div class="carrusel-css" id="carruselContainer"></div>
+    <button class="carrusel-flecha der" id="carruselNext">&#8250;</button>
+    <div class="carrusel-nav" id="carruselNav">
+        <!-- Los dots se generan dinámicamente en home.js según los slides de la BD -->
+    </div>
+</section>
+
+<!-- Template slide de novedades -->
+<template id="template-slide">
+    <div class="slide">
+        <img src="" alt="" class="foto-novedad">
+        <div class="texto-novedad">
+            <span class="badge-nuevo"></span>
+            <p class="texto-novedad-titulo"></p>
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>(4.8/5)</span>
+            </div>
+            <div class="plataformas">
+                <span class="plataforma-badge"></span>
+            </div>
+            <p class="descripcion"></p>
+            <p class="precio"></p>
+            <div class="slide-btns">
+                <button class="btn-comprar" data-id="">Añadir 🛒</button>
+                <button class="btn-ver-mas-slide">Ver más</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Más Vendidos -->
+<section class="mas-vendidos-section" id="mas-vendidos-section">
+    <div class="titulo-seccion">MÁS VENDIDOS</div>
+    <section class="mas-vendidos-grid" id="masVendidosGrid"></section>
+</section>
+
+<!-- Template card más vendidos -->
+<template id="template-card">
+    <div class="card-vendido-vertical">
+        <div class="card-image-vertical">
+            <img src="" alt="">
+            <div class="ranking-badge-vertical"></div>
+            <div class="hover-overlay">
+                <span class="quick-view">👁️ Vista rápida</span>
+            </div>
+        </div>
+        <div class="card-content-vertical">
+            <div class="game-category"></div>
+            <h3></h3>
+            <p class="game-description"></p>
+            <div class="rating-stars">
+                <span class="stars-filled">★★★★★</span>
+                <span class="rating-number">4.9</span>
+            </div>
+            <div class="platforms-tags">
+                <span class="platform-tag"></span>
+            </div>
+            <div class="card-footer-vertical">
+                <div class="price-section">
+                    <span class="current-price-vertical"></span>
+                </div>
+                <div class="card-actions-vertical">
+                    <button class="btn-add-cart" data-id="">🛒 Añadir</button>
+                    <button class="btn-ver-mas-home">Ver más</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Próximos Lanzamientos -->
+<section class="titulo-seccion" id="proximos-section">PROXIMOS LANZAMIENTOS</section>
+
+<section class="proximos-cinema">
+    <div class="cinema-curtain left"></div>
+    <div class="cinema-curtain right"></div>
+    <div class="spotlight"></div>
+
+    <!-- Los slides se generan dinámicamente desde la BD en home.js -->
+    <div class="cinema-slides" id="cinemaSlides"></div>
+
+    <button class="carrusel-flecha izq" id="cinemaPrev">&#8249;</button>
+    <button class="carrusel-flecha der" id="cinemaNext">&#8250;</button>
+
+    <!-- Los dots se generan dinámicamente en home.js según los slides de la BD -->
+    <div class="cinema-nav" id="cinemaNav"></div>
+</section>
+
+<!-- Template de slide de próximos lanzamientos -->
+<template id="template-cinema-slide">
+    <div class="cinema-slide">
+        <div class="slide-backdrop">
+            <img src="" alt="" class="cinema-img">
+            <div class="vignette-overlay"></div>
+        </div>
+        <div class="premiere-content">
+            <a href="#" target="_blank" class="premiere-badge">
+                <span class="premiere-icon">🎬</span>
+                <span class="premiere-text">VER TRAILER</span>
+            </a>
+            <h2 class="premiere-title"></h2>
+            <div class="premiere-date">
+                <span class="date-label">FECHA DE ESTRENO</span>
+                <span class="date-value"></span>
+            </div>
+            <div class="premiere-countdown">
+                <div class="count-box"><span class="count-num days">--</span><span class="count-txt">DÍAS</span></div>
+                <div class="count-box"><span class="count-num hours">--</span><span class="count-txt">HRS</span></div>
+                <div class="count-box"><span class="count-num minutes">--</span><span class="count-txt">MIN</span></div>
+                <div class="count-box"><span class="count-num seconds">--</span><span class="count-txt">SEG</span></div>
+            </div>
+            <button class="btn-premiere">🔔 RESERVAR AHORA</button>
+        </div>
+    </div>
+</template>
+
+<!-- ===== MODAL DE RESERVA ===== -->
+<div id="modalReserva" class="modal-reserva-overlay" style="display:none;">
+    <div class="modal-reserva-box">
+
+        <!-- Botón cerrar -->
+        <button class="modal-reserva-cerrar" id="btnCerrarModalReserva">✕</button>
+
+        <!-- Cabecera: info del juego -->
+        <div class="modal-reserva-header">
+            <img id="modalReservaImg" src="" alt="" class="modal-reserva-img">
+            <div class="modal-reserva-info">
+                <h2 id="modalReservaTitulo"></h2>
+                <p id="modalReservaFecha" class="modal-reserva-meta"></p>
+                <p id="modalReservaPrecio" class="modal-reserva-precio"></p>
+            </div>
+        </div>
+
+        <form id="formReserva" class="modal-reserva-form">
+            <input type="hidden" name="nombre_juego"    id="mNombreJuego">
+            <input type="hidden" name="imagen_juego"    id="mImagenJuego">
+            <input type="hidden" name="fecha_estreno"   id="mFechaEstreno">
+            <input type="hidden" name="precio"          id="mPrecio">
+            <input type="hidden" name="id_lanzamiento"  id="mIdLanzamiento">
+
+            <!-- Dirección -->
+            <div class="modal-section">
+                <h3 class="modal-section-title">📍 Dirección de envío</h3>
+                <div id="mDireccionesSaved" class="modal-dir-list"></div>
+                <details class="modal-nueva-dir">
+                    <summary>+ Usar nueva dirección</summary>
+                    <div class="modal-dir-campos">
+                        <input type="text"   name="calle"             placeholder="Calle y número" class="modal-input">
+                        <input type="text"   name="ciudad"            placeholder="Ciudad"         class="modal-input">
+                        <input type="text"   name="provincia"         placeholder="Provincia"      class="modal-input">
+                        <input type="text"   name="pais"              placeholder="País"           class="modal-input" value="España">
+                        <input type="text"   name="codigo_postal"     placeholder="Código postal"  class="modal-input">
+                        <input type="tel"    name="telefono_contacto" placeholder="Teléfono"       class="modal-input">
+                    </div>
+                </details>
+            </div>
+
+            <!-- Método de pago -->
+            <div class="modal-section">
+                <h3 class="modal-section-title">💳 Método de pago</h3>
+                <select name="metodo_pago" id="selectMetodoPago" class="modal-select">
+                    <option value="Tarjeta">💳 Tarjeta de crédito/débito</option>
+                    <option value="PayPal">🅿️ PayPal</option>
+                    <option value="Contrarembolso">📦 Contrarembolso</option>
+                </select>
+
+                <!-- Campos tarjeta -->
+                <div id="datosTarjeta" class="pago-campos">
+                    <div class="pago-fila">
+                        <label class="modal-label">Número de tarjeta</label>
+                        <input type="text" id="numTarjeta" name="num_tarjeta" class="modal-input"
+                               placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number">
+                    </div>
+                    <div class="pago-fila">
+                        <label class="modal-label">Titular</label>
+                        <input type="text" id="titularTarjeta" name="titular_tarjeta" class="modal-input"
+                               placeholder="Nombre tal como aparece en la tarjeta" autocomplete="cc-name">
+                    </div>
+                    <div class="pago-fila-doble">
+                        <div class="pago-fila">
+                            <label class="modal-label">Caducidad</label>
+                            <input type="text" id="caducidadTarjeta" name="caducidad" class="modal-input"
+                                   placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+                        </div>
+                        <div class="pago-fila">
+                            <label class="modal-label">CVV</label>
+                            <input type="text" id="cvvTarjeta" name="cvv" class="modal-input"
+                                   placeholder="123" maxlength="4" autocomplete="cc-csc">
+                        </div>
+                    </div>
+                    <p class="pago-nota">🔒 Tus datos están protegidos con cifrado SSL</p>
+                </div>
+
+                <!-- Campos PayPal -->
+                <div id="datosPaypal" class="pago-campos" style="display:none;">
+                    <div class="pago-fila">
+                        <label class="modal-label">Email de PayPal</label>
+                        <input type="email" id="emailPaypal" name="email_paypal" class="modal-input"
+                               placeholder="tu@paypal.com" autocomplete="email">
+                    </div>
+                    <p class="pago-nota">🔒 Serás redirigido a PayPal para completar el pago de forma segura</p>
+                </div>
+            </div>
+
+            <div id="mError" class="modal-error" style="display:none;"></div>
+
+            <button type="submit" class="modal-btn-confirmar">
+                ✅ Confirmar reserva — <span id="mPrecioBtn"></span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== BOTÓN ADMIN: AÑADIR LANZAMIENTO ===== -->
+<button id="btnAdminAddLanzamiento" class="btn-admin-add-lanzamiento" style="display:none;" title="Añadir próximo lanzamiento">
+    ＋ Nuevo Lanzamiento
+</button>
+
+<!-- ===== BOTÓN ADMIN: VER RESERVAS ===== -->
+<button id="btnAdminVerReservas" class="btn-admin-ver-reservas" style="display:none;" title="Ver todas las reservas">
+    📋 Ver Reservas
+</button>
+
+<!-- ===== MODAL ADMIN: CREAR/EDITAR LANZAMIENTO ===== -->
+<div id="modalAdminLanzamiento" class="modal-admin-overlay" style="display:none;">
+    <div class="modal-admin-box">
+        <button class="modal-admin-cerrar" id="btnCerrarModalLanzamiento">✕</button>
+        <h2 id="modalLanzamientoTitulo" class="modal-admin-h2">➕ Nuevo Lanzamiento</h2>
+
+        <form id="formAdminLanzamiento" class="modal-admin-form" enctype="multipart/form-data">
+            <input type="hidden" id="adminLanzId" name="id" value="0">
+            <input type="hidden" id="adminLanzImagenActual" name="imagen_actual" value="">
+
+            <label class="modal-admin-label">Nombre del juego *
+                <input type="text" id="adminLanzNombre" name="nombre" class="modal-admin-input" required placeholder="Ej: GTA VI">
+            </label>
+            <label class="modal-admin-label">Fecha de estreno *
+                <input type="date" id="adminLanzFecha" name="fecha_estreno" class="modal-admin-input" required>
+            </label>
+            <label class="modal-admin-label">Texto de fecha (visible)
+                <input type="text" id="adminLanzTextoFecha" name="texto_fecha" class="modal-admin-input" placeholder="Ej: OTOÑO 2026">
+            </label>
+            <label class="modal-admin-label">Precio (€) *
+                <input type="number" id="adminLanzPrecio" name="precio" class="modal-admin-input" step="0.01" min="0" required placeholder="69.99">
+            </label>
+            <label class="modal-admin-label">URL del trailer
+                <input type="url" id="adminLanzTrailer" name="url_trailer" class="modal-admin-input" placeholder="https://youtube.com/...">
+            </label>
+            <label class="modal-admin-label">Imagen del juego
+                <input type="file" id="adminLanzImagen" name="imagen" class="modal-admin-input" accept="image/*">
+                <span id="adminLanzImagenNombre" class="modal-admin-img-hint"></span>
+            </label>
+
+            <div id="adminLanzError" class="modal-error" style="display:none;"></div>
+            <button type="submit" class="modal-admin-submit" id="btnSubmitLanzamiento">💾 Guardar</button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== MODAL ADMIN: LISTA DE RESERVAS ===== -->
+<div id="modalAdminReservas" class="modal-admin-overlay" style="display:none;">
+    <div class="modal-admin-box modal-admin-box--wide">
+        <button class="modal-admin-cerrar" id="btnCerrarModalReservas">✕</button>
+        <h2 class="modal-admin-h2">📋 Reservas de usuarios</h2>
+        <div id="adminReservasList" class="admin-reservas-lista">
+            <p style="color:#94a3b8;">Cargando...</p>
+        </div>
+    </div>
+</div>

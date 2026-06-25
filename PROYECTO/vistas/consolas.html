@@ -1,0 +1,165 @@
+<!-- ===== VISTA CONSOLAS ===== -->
+<section class="titulo-seccion">CONSOLAS</section>
+
+<!-- Botón para mostrar filtros en móvil -->
+<button class="btn-toggle-filtros-mobile" id="btnToggleFiltrosMobile">
+    <span>🔍</span> Filtrar y Ordenar
+</button>
+
+<!-- Filtros -->
+<section class="filtros-container" id="filtros-consolas">
+    <div class="filtro-grupo">
+        <label for="marca">Marca / Plataforma</label>
+        <select id="marca" class="filtro-select">
+            <option value="">Todas las marcas</option>
+            <option value="PS5">Sony (PS5)</option>
+            <option value="Xbox">Microsoft (Xbox)</option>
+            <option value="Switch">Nintendo (Switch)</option>
+            <option value="Steam">Valve (Steam Deck)</option>
+        </select>
+    </div>
+    <div class="filtro-grupo">
+        <label for="ordenar">Ordenar por</label>
+        <select id="ordenar" class="filtro-select">
+            <option value="">Sin ordenar (todos)</option>
+            <option value="precio-asc">Precio: Menor a Mayor</option>
+            <option value="precio-desc">Precio: Mayor a Menor</option>
+            <option value="nombre">Nombre A-Z</option>
+        </select>
+    </div>
+    <div class="filtro-grupo search-group">
+        <label for="buscar">Buscar</label>
+        <div class="search-box">
+            <input type="text" id="buscar" class="filtro-search" placeholder="Buscar consolas...">
+            <span class="search-icon-filter">🔍</span>
+        </div>
+    </div>
+</section>
+
+<!-- Grid de productos -->
+<section class="consolas-grid" id="consolasGrid"></section>
+
+<!-- Paginación -->
+<div id="paginacionConsolas" class="paginacion-container"></div>
+
+
+<!-- Template de tarjeta consola -->
+<template id="template-tarjeta">
+    <div class="consola-card" data-id="">
+        <div class="consola-image">
+            <img src="" alt="">
+            <div class="stock-badge"></div>
+        </div>
+        <div class="consola-info">
+            <h3 class="consola-titulo"></h3>
+            <p class="consola-specs"></p>
+            <p class="consola-precio"></p>
+            <div class="consola-botones">
+                <button class="btn-anadir" data-id="">
+                    <span class="icono">🛒</span> Añadir
+                </button>
+                <button class="btn-ver-mas" data-id="">
+                    Ver más
+                </button>
+            </div>
+            <!-- Botones admin (ocultos por defecto) -->
+            <div class="admin-botones" style="display:none;">
+                <button class="btn-admin-editar">✏️ Editar</button>
+                <button class="btn-admin-eliminar">🗑️ Eliminar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Template tarjeta "Añadir producto" (solo admin) -->
+<template id="template-admin-add">
+    <div class="consola-card admin-add-card">
+        <div class="admin-add-icono">➕</div>
+        <div class="admin-add-texto">Añadir producto</div>
+    </div>
+</template>
+
+<!-- Modal añadir/editar producto (admin) -->
+<div class="admin-modal-overlay" id="adminModalOverlay" style="display:none;">
+    <div class="admin-modal">
+        <div class="admin-modal-header">
+            <h3 id="adminModalTitulo">➕ Nuevo producto</h3>
+            <button class="admin-modal-close" id="adminModalClose">✕</button>
+        </div>
+        <form id="formAdminProducto" enctype="multipart/form-data">
+            <input type="hidden" id="adminProductoId" name="id_producto" value="0">
+            <input type="hidden" id="adminImagenActual" name="imagen_actual" value="">
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Nombre *</label>
+                    <input type="text" id="adminNombre" name="nombre" placeholder="Nombre del producto" required>
+                </div>
+                <div class="admin-form-group">
+                    <label>Precio (€) *</label>
+                    <input type="number" id="adminPrecio" name="precio" placeholder="29.99" step="0.01" min="0"
+                        required>
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Categoría</label>
+                    <select id="adminCategoria" name="categoria">
+                        <option value="Videojuegos">Videojuegos</option>
+                        <option value="Consolas" selected>Consolas</option>
+                        <option value="Accesorios">Accesorios</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Plataforma</label>
+                    <select id="adminPlataforma" name="plataforma">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="PS5">Sony (PS5)</option>
+                        <option value="Xbox">Microsoft (Xbox)</option>
+                        <option value="Switch">Nintendo (Switch)</option>
+                        <option value="Steam">Valve (Steam Deck)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Marca</label>
+                    <select id="adminMarca" name="marca">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="Sony">Sony</option>
+                        <option value="Microsoft">Microsoft</option>
+                        <option value="Nintendo">Nintendo</option>
+                        <option value="Valve">Valve</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Stock</label>
+                    <input type="number" id="adminStock" name="stock" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Imagen</label>
+                    <input type="file" id="adminImagen" name="imagen" accept="image/*">
+                    <small id="adminImagenInfo" style="color:#94a3b8;"></small>
+                </div>
+                <div class="admin-form-group">
+                    <label>Género</label>
+                    <input type="text" id="adminGenero" name="genero" placeholder="Opcional">
+                </div>
+            </div>
+            <div class="admin-form-group">
+                <label>Descripción</label>
+                <textarea id="adminDescripcion" name="descripcion" rows="3" placeholder="Descripción..."></textarea>
+            </div>
+            <div class="admin-form-group admin-novedad-wrap">
+                <label class="admin-novedad-label">
+                    <input type="checkbox" id="adminEsNovedad" name="es_novedad" value="1">
+                    ⭐ Mostrar en Novedades (portada)
+                </label>
+            </div>
+
+            <button type="submit" class="btn-admin-guardar" id="btnAdminGuardar">💾 Guardar producto</button>
+            <p class="admin-msg" id="adminMsg"></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+<!-- ===== VISTA PRODUCTO INDIVIDUAL ===== -->
+<section class="prod-pagina" id="prod-pagina">
+
+    <!-- Botón volver -->
+    <div class="prod-topbar">
+        <button class="prod-btn-volver" id="btnVolverProducto">
+            ← Volver
+        </button>
+        <nav class="prod-breadcrumb" id="prod-breadcrumb">
+            <span>Inicio</span> / <span id="prod-bread-cat">Videojuegos</span> / <span id="prod-bread-nombre">...</span>
+        </nav>
+    </div>
+
+    <!-- Spinner de carga -->
+    <div class="prod-loading" id="prod-loading">
+        <div class="prod-spinner"></div>
+        <p>Cargando producto…</p>
+    </div>
+
+    <!-- Contenido principal (oculto hasta cargar) -->
+    <div class="prod-main" id="prod-main" style="display:none;">
+
+        <!-- ── Columna izquierda: imagen + rating + carrito ── -->
+        <aside class="prod-aside">
+            <div class="prod-img-wrap">
+                <img id="prod-img" src="" alt="" class="prod-img">
+            </div>
+            <div class="prod-rating-box">
+                <div class="prod-estrellas" id="prod-estrellas"></div>
+                <span class="prod-nota-num" id="prod-nota-num"></span>
+                <span class="prod-nota-total" id="prod-nota-total"></span>
+            </div>
+            <button class="prod-btn-carrito" id="prod-btn-carrito">
+                🛒 Añadir al carrito
+            </button>
+        </aside>
+
+        <!-- ── Columna derecha: toda la info ── -->
+        <div class="prod-info">
+
+            <!-- Badges -->
+            <div class="prod-badges" id="prod-badges"></div>
+
+            <!-- Nombre -->
+            <h1 class="prod-nombre" id="prod-nombre"></h1>
+
+            <!-- Precio -->
+            <p class="prod-precio" id="prod-precio"></p>
+
+            <!-- Stock -->
+            <div class="prod-stock-wrap" id="prod-stock"></div>
+
+            <!-- Extras decorativos -->
+            <div class="prod-extras">
+                <span class="prod-extra">🚚 Envío gratis en pedidos +50€</span>
+                <span class="prod-extra">🛡️ Garantía 2 años</span>
+                <span class="prod-extra">↩️ Devolución en 30 días</span>
+            </div>
+
+            <!-- Descripción / Especificaciones -->
+            <div class="prod-desc-wrap" id="prod-desc-wrap"></div>
+        </div>
+    </div>
+
+    <!-- ── Sección de reseñas ── -->
+    <div class="prod-resenas" id="prod-resenas" style="display:none;">
+        <h2 class="prod-resenas-titulo">💬 Opiniones de clientes</h2>
+
+        <!-- Resumen de puntuación -->
+        <div class="prod-rating-resumen">
+            <div class="prod-estrellas-resumen" id="prod-estrellas-resumen"></div>
+            <span class="prod-nota-resumen" id="prod-nota-resumen"></span>
+            <span class="prod-total-resumen" id="prod-total-resumen"></span>
+        </div>
+
+        <!-- Lista de reseñas -->
+        <div class="prod-resenas-lista" id="prod-resenas-lista"></div>
+
+        <!-- Formulario de valoración (solo si ha comprado y no ha valorado) -->
+        <div id="prod-form-resena" style="display:none;">
+            <p class="prod-form-titulo">⭐ Deja tu valoración</p>
+            <form id="prod-form-resena-form" novalidate>
+                <div class="star-picker prod-star-picker" title="Selecciona una puntuación">
+                    <input type="radio" id="ps5" name="prod-puntuacion" value="5">
+                    <label for="ps5" title="5 estrellas">★</label>
+                    <input type="radio" id="ps4" name="prod-puntuacion" value="4">
+                    <label for="ps4" title="4 estrellas">★</label>
+                    <input type="radio" id="ps3" name="prod-puntuacion" value="3">
+                    <label for="ps3" title="3 estrellas">★</label>
+                    <input type="radio" id="ps2" name="prod-puntuacion" value="2">
+                    <label for="ps2" title="2 estrellas">★</label>
+                    <input type="radio" id="ps1" name="prod-puntuacion" value="1">
+                    <label for="ps1" title="1 estrella">★</label>
+                </div>
+                <textarea id="prod-comentario" class="resena-textarea"
+                    placeholder="Cuéntanos tu experiencia… (opcional)" maxlength="1000"></textarea>
+                <button type="submit" class="btn-enviar-resena" id="prod-btn-resena">⭐ Publicar reseña</button>
+            </form>
+            <div id="prod-resena-msg" class="resena-msg"></div>
+        </div>
+
+        <!-- Avisos de estado -->
+        <div id="prod-ya-valorado" style="display:none;" class="ya-valorado-badge">✅ Ya has valorado este producto</div>
+        <div id="prod-login-notice" style="display:none;" class="resena-login-notice">
+            <a href="log-in/log-in.php">Inicia sesión</a> para dejar una valoración.
+        </div>
+        <div id="prod-no-compra" style="display:none;" class="no-compra-badge">
+            🔒 Sólo los compradores pueden valorar este producto
+        </div>
+    </div>
+
+</section>

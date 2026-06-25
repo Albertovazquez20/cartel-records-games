@@ -1,0 +1,72 @@
+<!-- ===== VISTA MIS PEDIDOS ===== -->
+<section class="titulo-seccion">MIS PEDIDOS</section>
+
+<section class="pedidos-wrapper">
+    <div class="pedidos-section">
+        <div id="pedidosContenedor">
+            <div class="pedidos-loading">
+                <div class="pedidos-spinner"></div>
+                Cargando pedidos…
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Template de tarjeta de pedido -->
+<template id="tplPedido">
+    <div class="pedido-card">
+        <div class="pedido-header">
+            <span class="pedido-id"></span>
+            <span class="pedido-fecha"></span>
+            <span class="pedido-estado">✅ Completado</span>
+            <span class="pedido-metodo-pago"></span>
+            <span class="pedido-total"></span>
+            <span class="pedido-chevron">▼</span>
+        </div>
+        <div class="pedido-direccion"></div>
+        <div class="pedido-body"></div>
+    </div>
+</template>
+
+<!-- Template de fila de producto dentro del pedido -->
+<template id="tplProducto">
+    <div class="pedido-producto">
+        <img class="pedido-producto-img" src="" alt="">
+        <div class="pedido-producto-info">
+            <div class="pedido-producto-nombre"></div>
+            <div class="pedido-producto-meta"></div>
+        </div>
+        <div class="pedido-producto-subtotal"></div>
+    </div>
+</template>
+
+<!-- ===== RESERVAS ===== -->
+<section class="pedidos-wrapper">
+    <div class="pedidos-section">
+        <div class="pedidos-reservas-titulo">🔔 MIS RESERVAS</div>
+        <div id="reservasContenedor">
+            <div class="pedidos-loading">
+                <div class="pedidos-spinner"></div>
+                Cargando reservas…
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Template tarjeta reserva -->
+<template id="tplReserva">
+    <div class="pedido-card reserva-card">
+        <div class="pedido-header">
+            <span class="reserva-icono">🔔</span>
+            <span class="reserva-nombre"></span>
+            <span class="pedido-estado reserva-estado">⏳ Pendiente de lanzamiento</span>
+            <span class="reserva-estreno"></span>
+        </div>
+        <div class="pedido-body reserva-body">
+            <img class="reserva-img" src="" alt="">
+            <div class="reserva-fecha-reserva"></div>
+            <button class="btn-cancelar-reserva">🗑️ Cancelar reserva</button>
+        </div>
+        <div class="reserva-cancelada-motivo" style="display:none;"></div>
+    </div>
+</template>

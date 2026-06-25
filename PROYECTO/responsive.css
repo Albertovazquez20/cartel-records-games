@@ -1,0 +1,1036 @@
+/* ==================== RESPONSIVE - DESKTOP (asegurar visibilidad) ==================== */
+@media (min-width: 1025px) {
+
+    /* Asegurar que la navegación desktop esté visible */
+    header>nav {
+        display: flex !important;
+    }
+
+    /* Asegurar que los filtros estén visibles */
+    .filtros-container {
+        display: flex !important;
+    }
+
+    /* Ocultar botón toggle de filtros en desktop */
+    .btn-toggle-filtros-mobile {
+        display: none !important;
+    }
+
+    /* Ocultar menú hamburguesa en desktop */
+    .menu-hamburguesa {
+        display: none !important;
+    }
+
+    .menu-mobile {
+        display: none !important;
+        right: -100% !important;
+    }
+
+    .menu-overlay {
+        display: none !important;
+        opacity: 0 !important;
+    }
+}
+
+/* ==================== ESTILOS COMUNES PARA TABLETS Y MÓVILES ==================== */
+@media (max-width: 1024px) {
+
+    /* HEADER — layout de 2 filas limpias:
+       Fila 1: [logo icon + nombre] ......... [info | usuario | carrito | ☰]
+       Fila 2: [buscador – ancho completo del área del logo]
+    */
+    header {
+        height: auto;
+        padding: 8px 15px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    header>.logo {
+        flex: 1;
+        min-width: 0;
+        /* necesario para que el texto pueda truncarse */
+        margin-bottom: 0;
+    }
+
+    .logo-content {
+        display: flex;
+        flex-wrap: wrap;
+        /* permite que el buscador salte a la fila 2 */
+        align-items: center;
+        gap: 6px;
+    }
+
+    .logo-content .imgmando {
+        flex-shrink: 0;
+    }
+
+    .logo-content h1 {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* "CARTEL RE…" si no cabe */
+    }
+
+
+    /* ══ QUICK NAV MÓVIL — barra fija pegada al header ══ */
+    .header-quick-nav {
+        position: fixed;
+        top: 0;
+        /* JS lo ajusta al offsetHeight real del header */
+        left: 0;
+        right: 0;
+        z-index: 1001;
+
+        background: linear-gradient(135deg, rgba(26, 0, 51, 0.97) 0%, rgba(45, 27, 105, 0.97) 100%);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(108, 61, 247, 0.35);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        padding: 8px 12px;
+
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 0;
+        order: 0;
+        flex: none;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .header-quick-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .quick-nav-pill {
+        padding: 5px 12px;
+        font-size: 11px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Primer pill con margen izquierdo para no pegarse al borde */
+    .quick-nav-pill:first-child {
+        margin-left: 4px;
+    }
+
+    /* OCULTAR NAV DESKTOP */
+    header>nav {
+        display: none !important;
+    }
+
+    /* ICONOS — permanecen en la fila 1, a la derecha */
+    .icons {
+        display: flex;
+        flex-shrink: 0;
+        gap: 6px;
+        align-items: center;
+        padding-top: 2px;
+        /* alinea visualmente con el logo */
+    }
+
+    /* Valor inicial — el JS lo recalcula dinámicamente en cada resize */
+    body {
+        padding-top: 102px;
+    }
+
+    /* MENÚ HAMBURGUESA */
+    .menu-hamburguesa {
+        display: flex !important;
+        margin-left: 10px;
+    }
+
+    .menu-mobile {
+        display: block !important;
+        height: 100vh;
+        overflow-y: auto;
+        padding-bottom: 30px;
+    }
+
+    .menu-overlay {
+        display: block !important;
+        pointer-events: none;
+        /* no bloquear clicks cuando el menú está cerrado */
+    }
+
+    /* OCULTAR FILTROS DEL DESKTOP */
+    .filtros-container {
+        display: none !important;
+    }
+
+    /* BOTÓN TOGGLE DE FILTROS MÓVIL */
+    .btn-toggle-filtros-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: calc(100% - 24px);
+        margin: 8px 12px 4px;
+        padding: 13px 20px;
+        background: linear-gradient(135deg, rgba(108, 61, 247, 0.25), rgba(142, 68, 173, 0.25));
+        border: 1px solid rgba(108, 61, 247, 0.5);
+        border-radius: 12px;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
+    }
+
+    .btn-toggle-filtros-mobile:hover {
+        background: linear-gradient(135deg, rgba(108, 61, 247, 0.45), rgba(142, 68, 173, 0.45));
+        border-color: rgba(108, 61, 247, 0.8);
+        box-shadow: 0 4px 20px rgba(108, 61, 247, 0.3);
+    }
+
+    .btn-toggle-filtros-mobile.activo {
+        background: linear-gradient(135deg, rgba(108, 61, 247, 0.55), rgba(142, 68, 173, 0.55));
+        border-color: #6c3df7;
+        box-shadow: 0 0 18px rgba(108, 61, 247, 0.4);
+    }
+
+    /* FILTROS VISIBLES EN MÓVIL (al pulsar el toggle) */
+    .filtros-container.filtros-visible {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px;
+        padding: 16px;
+        margin: 0 12px 8px;
+        background: rgba(20, 0, 40, 0.96);
+        border: 1px solid rgba(108, 61, 247, 0.35);
+        border-radius: 14px;
+        backdrop-filter: blur(12px);
+        animation: filtrosSlideDown 0.25s ease;
+    }
+
+    @keyframes filtrosSlideDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .filtros-container.filtros-visible .filtro-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+    }
+
+    .filtros-container.filtros-visible .filtro-select,
+    .filtros-container.filtros-visible .filtro-search {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .filtros-container.filtros-visible .search-box {
+        width: 100%;
+    }
+
+    /* OCULTAR CORTINAS DEL CINEMA EN TODOS LOS MÓVILES */
+    .cinema-curtain {
+        display: none;
+    }
+
+    /* CENTRADO COMÚN PARA PRÓXIMOS LANZAMIENTOS */
+    .premiere-content {
+        position: absolute;
+        bottom: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* ========== ESTILOS FILTROS MÓVILES (menú hamburguesa) ========== */
+    .mobile-filtros {
+        padding: 0 20px 20px;
+        border-top: 1px solid rgba(108, 61, 247, 0.3);
+        margin-top: 10px;
+    }
+
+    .mobile-filtros-titulo {
+        color: #FFD700;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 15px 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .mobile-filtro-grupo {
+        margin-bottom: 15px;
+    }
+
+    .mobile-filtro-grupo label {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+    }
+
+    .mobile-filtro-select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid rgba(108, 61, 247, 0.4);
+        border-radius: 10px;
+        background: rgba(108, 61, 247, 0.15);
+        backdrop-filter: blur(10px);
+        color: white;
+        font-size: 14px;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23FFD700' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+    }
+
+    .mobile-filtro-select option {
+        background: #2d1b69;
+        color: white;
+        padding: 10px;
+    }
+
+    .mobile-filtro-select:focus {
+        border-color: #FFD700;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .mobile-search-box {
+        position: relative;
+    }
+
+    .mobile-filtro-search {
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid rgba(108, 61, 247, 0.4);
+        border-radius: 10px;
+        background: rgba(108, 61, 247, 0.15);
+        backdrop-filter: blur(10px);
+        color: white;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-filtro-search::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .mobile-filtro-search:focus {
+        border-color: #FFD700;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .mobile-search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        pointer-events: none;
+    }
+
+    .mobile-btn-aplicar {
+        width: 100%;
+        padding: 14px;
+        margin-top: 10px;
+        background: linear-gradient(135deg, #6c3df7, #8e44ad);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 20px rgba(108, 61, 247, 0.4);
+    }
+
+    .mobile-btn-aplicar:hover {
+        background: linear-gradient(135deg, #8e44ad, #b76eff);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(108, 61, 247, 0.5);
+    }
+}
+
+/* ==================== RESPONSIVE - TABLETS (solo ajustes específicos) ==================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .imgmando {
+        width: 50px;
+    }
+
+    header h1 {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .icon-item {
+        font-size: 9px;
+        gap: 3px;
+        padding: 4px 6px;
+    }
+
+    .icon-item img {
+        width: 20px;
+        margin-bottom: 2px;
+    }
+
+    .titulo-seccion {
+        font-size: 18px;
+        padding: 14px 12px;
+        letter-spacing: 1px;
+    }
+
+    .texto-novedad-titulo {
+        font-size: 20px;
+    }
+
+    .descripcion {
+        font-size: 12px;
+    }
+
+    /* MÁS VENDIDOS */
+    .mas-vendidos-grid {
+        gap: 25px;
+        padding: 40px 25px;
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .card-vendido-vertical {
+        max-width: 100%;
+    }
+
+    /* NOVEDADES */
+    .foto-novedad {
+        width: 32%;
+        left: 3%;
+    }
+
+    .texto-novedad {
+        width: 55%;
+        right: 2%;
+        padding: 12px;
+    }
+
+    /* PRÓXIMOS LANZAMIENTOS */
+    .proximos-cinema {
+        height: 50vh;
+        min-height: 400px;
+    }
+
+    .premiere-content {
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .premiere-title {
+        font-size: 24px !important;
+        letter-spacing: 3px;
+    }
+
+    .count-box {
+        min-width: 55px;
+        padding: 8px 6px;
+    }
+
+    .count-num {
+        font-size: 22px;
+    }
+
+    .foto-proximos {
+        width: 300px;
+    }
+}
+
+/* ==================== RESPONSIVE - MÓVILES ==================== */
+@media (max-width: 768px) {
+    body {
+        padding-top: 90px;
+    }
+
+    header>.logo {
+        margin-bottom: 0;
+        /* quitar el margin que descolocaba el layout */
+    }
+
+    .imgmando {
+        width: 38px;
+    }
+
+    header h1 {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .search-icon {
+        right: 12px;
+        font-size: 16px;
+    }
+
+    .icon-item {
+        font-size: 9px;
+        gap: 3px;
+        padding: 4px 6px;
+    }
+
+    .icon-item img {
+        width: 18px;
+        margin-bottom: 2px;
+    }
+
+    /* DROPDOWNS (Info y Perfil) — más compactos en móvil */
+    .info-dropdown {
+        width: 200px;
+        margin-top: 8px;
+        border-radius: 10px;
+        right: 0;
+        left: auto;
+    }
+
+    .info-dropdown-header {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+
+    .info-dropdown-section {
+        padding: 4px 0;
+    }
+
+    .info-item {
+        padding: 6px 12px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .info-icon {
+        font-size: 13px;
+    }
+
+    .info-social-icons {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .info-social {
+        font-size: 16px;
+    }
+
+    /* TÍTULOS */
+    .titulo-seccion {
+        font-size: 20px;
+        padding: 14px 10px;
+        letter-spacing: 2px;
+    }
+
+    /* NOVEDADES - CARRUSEL */
+    .novedades {
+        height: 65vh;
+        margin-top: 0;
+    }
+
+    /* FLECHAS — se mueven al fondo del carrusel, centradas y pequeñas */
+    .carrusel-flecha {
+        top: auto !important;
+        bottom: 38px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.1rem !important;
+        transform: none !important;
+    }
+
+    .carrusel-flecha.izq {
+        left: calc(50% - 48px) !important;
+        right: auto !important;
+    }
+
+    .carrusel-flecha.der {
+        right: calc(50% - 48px) !important;
+        left: auto !important;
+    }
+
+    .carrusel-flecha:hover {
+        transform: scale(1.08) !important;
+    }
+
+    .carrusel-flecha:active {
+        transform: scale(0.95) !important;
+    }
+
+    .foto-novedad {
+        width: 40%;
+        height: 70%;
+        left: 23%;
+    }
+
+    .texto-novedad {
+        width: 42%;
+        right: 25px;
+        padding: 18px;
+    }
+
+    .badge-nuevo {
+        font-size: 9px;
+        padding: 4px 10px;
+    }
+
+    .texto-novedad-titulo {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .rating {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .rating .stars {
+        font-size: 12px;
+    }
+
+    .plataformas {
+        flex-wrap: wrap;
+    }
+
+    .plataforma-badge {
+        font-size: 9px;
+        padding: 3px 7px;
+    }
+
+    .descripcion {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .precio {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .btn-comprar {
+        padding: 8px 16px;
+        font-size: 11px;
+        border-radius: 20px;
+    }
+
+    /* MÁS VENDIDOS */
+    .mas-vendidos-grid {
+        gap: 20px;
+        padding: 25px 15px;
+        grid-template-columns: 1fr;
+    }
+
+    .card-vendido-vertical {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .card-image-vertical {
+        height: 220px;
+    }
+
+    .card-content-vertical {
+        padding: 18px 15px;
+    }
+
+    .game-category {
+        font-size: 10px;
+        padding: 5px 12px;
+        margin-bottom: 8px;
+    }
+
+    .card-vendido-vertical h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .game-description {
+        font-size: 12px;
+        margin-bottom: 10px;
+        max-height: 60px;
+        overflow-y: auto;
+    }
+
+    .rating-stars {
+        margin-bottom: 10px;
+        gap: 8px;
+    }
+
+    .stars-filled {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .rating-number {
+        font-size: 14px;
+    }
+
+    .game-stats {
+        gap: 15px;
+        margin-bottom: 10px;
+        padding: 10px 0;
+    }
+
+    .stat-item {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .stat-icon {
+        font-size: 16px;
+    }
+
+    .platforms-tags {
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+
+    .platform-tag {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    .card-footer-vertical {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .original-price-vertical {
+        font-size: 11px;
+    }
+
+    .current-price-vertical {
+        font-size: 26px;
+    }
+
+    .btn-add-cart {
+        padding: 10px 18px;
+        font-size: 11px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .ranking-badge-vertical {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        top: 12px;
+        left: 12px;
+    }
+
+    .discount-tag-vertical {
+        padding: 6px 12px;
+        font-size: 14px;
+        top: 12px;
+        right: 12px;
+    }
+
+    /* PRÓXIMOS LANZAMIENTOS */
+    .proximos-cinema {
+        height: 45vh;
+        min-height: 350px;
+    }
+
+    .premiere-content {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .premiere-title {
+        font-size: 20px !important;
+        letter-spacing: 2px;
+    }
+
+    .count-box {
+        min-width: 50px;
+        padding: 6px 5px;
+    }
+
+    .count-num {
+        font-size: 18px;
+    }
+
+    .btn-premiere {
+        font-size: 11px;
+        padding: 8px 16px;
+    }
+
+    .foto-proximos {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    /* FOOTER */
+    footer {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+/* ==================== RESPONSIVE - MÓVILES PEQUEÑOS ==================== */
+@media (max-width: 480px) {
+    body {
+        padding-top: 135px;
+    }
+
+    .imgmando {
+        width: 40px;
+    }
+
+    header h1 {
+        font-size: 9px;
+    }
+
+    .icon-item {
+        font-size: 8px;
+        padding: 3px 5px;
+    }
+
+    .icon-item img {
+        width: 16px;
+    }
+
+    .titulo-seccion {
+        font-size: 16px;
+        padding: 10px 8px;
+        letter-spacing: 1.5px;
+    }
+
+    /* TARJETAS MÁS VENDIDOS */
+    .card-vendido-vertical {
+        max-width: 300px;
+    }
+
+    .card-image-vertical {
+        height: 200px;
+    }
+
+    .card-content-vertical {
+        padding: 15px 12px;
+    }
+
+    .card-vendido-vertical h3 {
+        font-size: 16px;
+    }
+
+    .game-description {
+        font-size: 11px;
+        max-height: 55px;
+        overflow-y: auto;
+    }
+
+    .current-price-vertical {
+        font-size: 22px;
+    }
+
+    .btn-add-cart {
+        padding: 8px 14px;
+        font-size: 10px;
+    }
+
+    .ranking-badge-vertical {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .discount-tag-vertical {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    /* NOVEDADES EN MÓVIL PEQUEÑO */
+    .novedades {
+        height: 45vh !important;
+        min-height: 280px;
+        padding: 0;
+    }
+
+    .carrusel-css {
+        position: absolute !important;
+        inset: 0;
+        height: auto;
+    }
+
+    .slide {
+        position: absolute !important;
+        inset: 0;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 10px !important;
+    }
+
+    .foto-novedad {
+        position: absolute !important;
+        top: 50% !important;
+        left: 22% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 38% !important;
+        height: 75% !important;
+        max-height: none;
+        margin: 0 !important;
+        object-fit: contain;
+    }
+
+    .texto-novedad {
+        position: absolute !important;
+        top: 50% !important;
+        left: auto !important;
+        right: 3% !important;
+        transform: translateY(-50%) !important;
+        width: 52% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+    }
+
+    .texto-novedad-titulo {
+        font-size: 12px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .badge-nuevo {
+        font-size: 7px !important;
+        padding: 2px 6px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .rating {
+        font-size: 8px !important;
+        gap: 4px;
+        margin-bottom: 4px !important;
+        padding-bottom: 4px !important;
+    }
+
+    .rating .stars {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .plataformas {
+        gap: 3px !important;
+        margin-bottom: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .plataforma-badge {
+        font-size: 6px !important;
+        padding: 2px 4px !important;
+        border-radius: 4px !important;
+    }
+
+    .descripcion {
+        font-size: 8px !important;
+        line-height: 1.3;
+        margin-bottom: 5px !important;
+        padding: 4px 0 !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .precio {
+        font-size: 14px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .btn-comprar {
+        padding: 6px 10px !important;
+        font-size: 8px !important;
+        border-radius: 12px !important;
+    }
+
+    /* PRÓXIMOS LANZAMIENTOS */
+    .proximos-cinema {
+        height: 40vh;
+        min-height: 320px;
+    }
+
+    .premiere-content {
+        width: 92%;
+        max-width: 400px;
+    }
+
+    .premiere-title {
+        font-size: 16px !important;
+        letter-spacing: 1px;
+        margin: 5px 0;
+    }
+
+    .premiere-badge {
+        font-size: 9px;
+        padding: 5px 10px;
+    }
+
+    .premiere-date {
+        margin-bottom: 6px;
+    }
+
+    .date-label {
+        font-size: 8px;
+    }
+
+    .date-value {
+        font-size: 11px;
+    }
+
+    .count-box {
+        min-width: 40px;
+        padding: 5px 4px;
+    }
+
+    .count-num {
+        font-size: 14px;
+    }
+
+    .count-txt {
+        font-size: 6px;
+    }
+
+    .btn-premiere {
+        font-size: 9px;
+        padding: 6px 12px;
+    }
+
+    .premiere-countdown {
+        gap: 5px;
+        margin-bottom: 8px;
+    }
+
+    /* Reserva card en móvil: botón cancelar en nueva línea */
+    .reserva-card .reserva-body {
+        flex-wrap: wrap;
+    }
+
+    .btn-cancelar-reserva {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+}

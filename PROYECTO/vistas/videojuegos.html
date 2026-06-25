@@ -1,0 +1,183 @@
+<!-- ===== VISTA VIDEOJUEGOS ===== -->
+<section class="titulo-seccion">VIDEOJUEGOS</section>
+
+<!-- Botón para mostrar filtros en móvil -->
+<button class="btn-toggle-filtros-mobile" id="btnToggleFiltrosMobile">
+    <span>🔍</span> Filtrar y Ordenar
+</button>
+
+<!-- Filtros -->
+<section class="filtros-container">
+    <div class="filtro-grupo">
+        <label for="genero">Género</label>
+        <select id="genero" class="filtro-select">
+            <option value="">Todos los géneros</option>
+            <option value="accion">Acción</option>
+            <option value="deportes">Deportes</option>
+            <option value="aventura">Aventura</option>
+            <option value="rpg">RPG</option>
+            <option value="shooter">Shooter</option>
+            <option value="mundo abierto">Mundo Abierto</option>
+        </select>
+    </div>
+    <div class="filtro-grupo">
+        <label for="plataforma">Plataforma</label>
+        <select id="plataforma" class="filtro-select">
+            <option value="">Todas las plataformas</option>
+            <option value="ps5">PlayStation 5</option>
+            <option value="ps4">PlayStation 4</option>
+            <option value="xbox">Xbox Series X|S</option>
+            <option value="pc">PC</option>
+            <option value="switch">Nintendo Switch</option>
+        </select>
+    </div>
+    <div class="filtro-grupo">
+        <label for="ordenar">Ordenar por</label>
+        <select id="ordenar" class="filtro-select">
+            <option value="">Sin ordenar (todos)</option>
+            <option value="precio-asc">Precio: Menor a Mayor</option>
+            <option value="precio-desc">Precio: Mayor a Menor</option>
+            <option value="nombre">Nombre A-Z</option>
+        </select>
+    </div>
+    <div class="filtro-grupo search-group">
+        <label for="buscar">Buscar</label>
+        <div class="search-box">
+            <input type="text" id="buscar" class="filtro-search" placeholder="Buscar juegos...">
+            <span class="search-icon-filter">🔍</span>
+        </div>
+    </div>
+</section>
+
+<!-- Grid de productos -->
+<section class="videojuegos-grid" id="videojuegosGrid"></section>
+
+<!-- Paginación -->
+<div id="paginacionVideojuegos" class="paginacion-container"></div>
+
+<!-- Template de tarjeta normal -->
+<template id="template-tarjeta">
+    <div class="videojuego-card" data-id="">
+        <div class="videojuego-image">
+            <img src="" alt="">
+            <div class="stock-badge"></div>
+        </div>
+        <div class="videojuego-info">
+            <h3 class="videojuego-titulo"></h3>
+            <p class="videojuego-plataforma"></p>
+            <p class="videojuego-precio"></p>
+            <div class="videojuego-botones">
+                <button class="btn-anadir" data-id="">
+                    <span class="icono">🛒</span> Añadir
+                </button>
+                <button class="btn-ver-mas" data-id="">
+                    Ver más
+                </button>
+            </div>
+            <!-- Botones admin (ocultos por defecto) -->
+            <div class="admin-botones" style="display:none;">
+                <button class="btn-admin-editar">✏️ Editar</button>
+                <button class="btn-admin-eliminar">🗑️ Eliminar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Template tarjeta "Añadir producto" (solo admin) -->
+<template id="template-admin-add">
+    <div class="videojuego-card admin-add-card" id="cardAñadirProducto">
+        <div class="admin-add-icono">➕</div>
+        <div class="admin-add-texto">Añadir producto</div>
+    </div>
+</template>
+
+<!-- Modal añadir/editar producto (admin) -->
+<div class="admin-modal-overlay" id="adminModalOverlay" style="display:none;">
+    <div class="admin-modal">
+        <div class="admin-modal-header">
+            <h3 id="adminModalTitulo">➕ Nuevo producto</h3>
+            <button class="admin-modal-close" id="adminModalClose">✕</button>
+        </div>
+        <form id="formAdminProducto" enctype="multipart/form-data">
+            <input type="hidden" id="adminProductoId" name="id_producto" value="0">
+            <input type="hidden" id="adminImagenActual" name="imagen_actual" value="">
+
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Nombre *</label>
+                    <input type="text" id="adminNombre" name="nombre" placeholder="Nombre del producto" required>
+                </div>
+                <div class="admin-form-group">
+                    <label>Precio (€) *</label>
+                    <input type="number" id="adminPrecio" name="precio" placeholder="29.99" step="0.01" min="0"
+                        required>
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Categoría</label>
+                    <select id="adminCategoria" name="categoria">
+                        <option value="Videojuegos">Videojuegos</option>
+                        <option value="Consolas">Consolas</option>
+                        <option value="Accesorios">Accesorios</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Plataforma</label>
+                    <select id="adminPlataforma" name="plataforma">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="PS5">PlayStation 5</option>
+                        <option value="PS4">PlayStation 4</option>
+                        <option value="Xbox">Xbox Series X|S</option>
+                        <option value="PC">PC</option>
+                        <option value="Switch">Nintendo Switch</option>
+                    </select>
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Marca</label>
+                    <input type="text" id="adminMarca" name="marca" placeholder="Sony, EA, Microsoft...">
+                </div>
+                <div class="admin-form-group">
+                    <label>Género</label>
+                    <select id="adminGenero" name="genero">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="Accion">Acción</option>
+                        <option value="Deportes">Deportes</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Shooter">Shooter</option>
+                        <option value="Mundo Abierto">Mundo Abierto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="admin-form-row">
+                <div class="admin-form-group">
+                    <label>Stock</label>
+                    <input type="number" id="adminStock" name="stock" placeholder="0" min="0">
+                </div>
+                <div class="admin-form-group">
+                    <label>Imagen</label>
+                    <input type="file" id="adminImagen" name="imagen" accept="image/*">
+                    <small id="adminImagenInfo" style="color:#94a3b8;"></small>
+                </div>
+            </div>
+            <div class="admin-form-group" style="grid-column: 1/-1;">
+                <label>Descripción</label>
+                <textarea id="adminDescripcion" name="descripcion" rows="3"
+                    placeholder="Descripción del producto..."></textarea>
+            </div>
+
+            <div class="admin-form-group admin-novedad-wrap">
+                <label class="admin-novedad-label">
+                    <input type="checkbox" id="adminEsNovedad" name="es_novedad" value="1">
+                    ⭐ Mostrar en Novedades (portada)
+                </label>
+            </div>
+
+            <button type="submit" class="btn-admin-guardar" id="btnAdminGuardar">💾 Guardar producto</button>
+            <p class="admin-msg" id="adminMsg"></p>
+        </form>
+    </div>
+</div>

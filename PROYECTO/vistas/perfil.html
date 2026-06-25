@@ -1,0 +1,51 @@
+<!-- ===== VISTA MI PERFIL ===== -->
+<section class="titulo-seccion">MI PERFIL</section>
+
+<section class="perfil-wrapper">
+    <div class="perfil-section">
+
+        <!-- Avatar -->
+        <div class="perfil-avatar">
+            <div class="perfil-avatar-icon">👤</div>
+            <div class="perfil-avatar-nombre" id="perfilNombreAvatar">—</div>
+            <div class="perfil-avatar-email" id="perfilEmailAvatar">—</div>
+        </div>
+
+        <!-- Tarjeta: datos personales -->
+        <div class="perfil-card">
+            <div class="perfil-card-titulo">✏️ Datos personales</div>
+
+            <div class="perfil-form-group">
+                <label for="perfilNombre">Nombre de usuario</label>
+                <input type="text" id="perfilNombre" placeholder="Tu nombre de usuario">
+            </div>
+
+            <div class="perfil-form-group">
+                <label for="perfilEmail">Correo electrónico</label>
+                <input type="email" id="perfilEmail" placeholder="tu@email.com">
+            </div>
+
+            <button class="btn-guardar-perfil" id="btnGuardarDatos">💾 Guardar cambios</button>
+            <p class="perfil-msg" id="msgDatos"></p>
+        </div>
+
+        <!-- Tarjeta: cambiar contraseña -->
+        <div class="perfil-card">
+            <div class="perfil-card-titulo">🔒 Cambiar contraseña</div>
+
+            <div class="perfil-form-group">
+                <label for="perfilPassActual">Contraseña actual</label>
+                <input type="password" id="perfilPassActual" placeholder="••••••••">
+            </div>
+
+            <div class="perfil-form-group">
+                <label for="perfilPassNueva">Nueva contraseña</label>
+                <input type="password" id="perfilPassNueva" placeholder="Mínimo 6 caracteres">
+            </div>
+
+            <button class="btn-guardar-perfil" id="btnGuardarPass">🔒 Cambiar contraseña</button>
+            <p class="perfil-msg" id="msgPass"></p>
+        </div>
+
+    </div>
+</section>
