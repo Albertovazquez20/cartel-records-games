@@ -2633,4 +2633,16 @@ footer {
     padding: 0 4px;
     line-height: 40px;
     user-select: none;
-}
+}
+
+.social-icon .fa-facebook { color: #1877F2; }
+.social-icon .fa-instagram { color: #E1306C; }
+.social-icon .fa-x-twitter { color: #ffffff; }
+.social-icon .fa-youtube { color: #FF0000; }
+.social-icon .fa-discord { color: #5865F2; }
+
+.info-social .fa-facebook { color: #1877F2; }
+.info-social .fa-instagram { color: #E1306C; }
+.info-social .fa-x-twitter { color: #ffffff; }
+.info-social .fa-youtube { color: #FF0000; }
+.info-social .fa-discord { color: #5865F2; }
